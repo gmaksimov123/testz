@@ -15,18 +15,19 @@ namespace testz.App.Classes
             int loops = 1;
             int equalsLoop = -1;
 
-            var results = new List<Tuple<int,int[]>>();
+            var results = new List<Tuple<int, int[]>>();
 
             array = allocator.Run(array);
+            
             while (equalsLoop == -1)
             {
-                results.Add(Tuple.Create(loops, array));
+                results.Add(Tuple.Create(loops, Clone(array)));
                 array = allocator.Run(array);
                 loops++;
-
+                
                 equalsLoop = FindEqualsIndex(results, array);
             }
-            var result = new Result { Array = defaultArray, Loops = loops, EqualsLoop = equalsLoop, ResultArray = array };
+            var result = new Result { Array = defaultArray, Loops = loops, EqualsLoop = loops - equalsLoop, ResultArray = array };
             return result;
         }
 

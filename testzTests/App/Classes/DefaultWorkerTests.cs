@@ -20,6 +20,11 @@ namespace testz.App.Classes.Tests
 
             var result = worker.Run(new int[] { 0, 2, 7, 0 }, allocator);
             Assert.AreEqual(5, result.Loops);
+            Assert.AreEqual(4, result.EqualsLoop);
+
+            result = worker.Run(new int[] { 0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11 }, allocator);
+            Assert.AreEqual(7864, result.Loops);
+            Assert.AreEqual(1695, result.EqualsLoop);
         }
     }
 }
