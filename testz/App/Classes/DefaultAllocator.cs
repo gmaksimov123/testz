@@ -7,9 +7,9 @@ using testz.App.Interfaces;
 
 namespace testz.App.Classes
 {
-    public class DefaultAllocation : IAllocation
+    public class DefaultAllocator : IAllocator
     {
-        public DefaultAllocation()
+        public DefaultAllocator()
         {
         }
 

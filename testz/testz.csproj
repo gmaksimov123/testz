@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Classes\DefaultAllocation.cs" />
-    <Compile Include="App\Interfaces\IAllocation.cs" />
+    <Compile Include="App\Classes\DefaultAllocator.cs" />
+    <Compile Include="App\Classes\DefaultWorker.cs" />
+    <Compile Include="App\Classes\Result.cs" />
+    <Compile Include="App\Interfaces\IAllocator.cs" />
+    <Compile Include="App\Interfaces\IWorker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

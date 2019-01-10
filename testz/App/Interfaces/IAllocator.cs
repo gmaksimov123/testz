@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace testz.App.Interfaces
 {
-    public interface IAllocation
+    public interface IAllocator
     {
-        int[] Run(int[] array, int allocationPosition);
+        int[] Run(int[] array);
     }
 }
