@@ -9,10 +9,6 @@ namespace testz.App.Classes
 {
     public class DefaultAllocator : IAllocator
     {
-        public DefaultAllocator()
-        {
-        }
-
         public int[] Run(int[] array)
         {
             int allocationIndex = FindMaxIndex(array);
@@ -38,7 +34,7 @@ namespace testz.App.Classes
         protected int FindMaxIndex(int[] array)
         {
             int maxIndex = 0;
-            int lastIndex = array.Length;
+            int lastIndex = array.Length - 1;
             for (int i = 0; i <= lastIndex; i++)
             {
                 if (array[maxIndex] < array[i])

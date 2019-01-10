@@ -9,19 +9,25 @@ namespace testz.App.Classes
 {
     public class DefaultWorker : IWorker
     {
-        public void Run(int[] array, IAllocator allocator)
+        public Result Run(int[] array, IAllocator allocator)
         {
             int[] defaultArray = Clone(array);
-            var results = new List<int[]>();
+            int loops = 1;
+            int equalsLoop = -1;
+
+            var results = new List<Tuple<int,int[]>>();
 
             array = allocator.Run(array);
-            while (!HasEquals(results, array))
+            while (equalsLoop == -1)
             {
-                results.Add(array);
+                results.Add(Tuple.Create(loops, array));
                 array = allocator.Run(array);
-            }
-            results.Add(array);
+                loops++;
 
+                equalsLoop = FindEqualsIndex(results, array);
+            }
+            var result = new Result { Array = defaultArray, Loops = loops, EqualsLoop = equalsLoop, ResultArray = array };
+            return result;
         }
 
         protected int[] Clone(int[] array)
@@ -31,9 +37,10 @@ namespace testz.App.Classes
             return result;
         }
 
-        protected bool HasEquals(List<int[]> list, int[] array)
+        protected int FindEqualsIndex(List<Tuple<int, int[]>> list, int[] array)
         {
-            return list.Any(x => x.SequenceEqual(array));
+            var founded = list.FirstOrDefault(x => x.Item2.SequenceEqual(array));
+            return founded?.Item1 ?? -1;
         }
     }
 }

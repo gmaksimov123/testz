@@ -11,5 +11,6 @@ namespace testz.App.Classes
         public int[] Array { get; set; }
         public int[] ResultArray { get; set; }
         public int Loops { get; set; }
+        public int EqualsLoop { get; set; }
     }
 }
