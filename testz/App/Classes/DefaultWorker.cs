@@ -15,19 +15,19 @@ namespace testz.App.Classes
             int loops = 1;
             int equalsLoop = -1;
 
-            var results = new List<Tuple<int, int[]>>();
+            var results = new List<string>();
 
-            array = allocator.Run(array);
+            allocator.Run(array);
             
             while (equalsLoop == -1)
             {
-                results.Add(Tuple.Create(loops, Clone(array)));
-                array = allocator.Run(array);
+                results.Add(StringifyArray(array));
+                allocator.Run(array);
                 loops++;
                 
-                equalsLoop = FindEqualsIndex(results, array);
+                equalsLoop = FindEqualsIndex(results, StringifyArray(array));
             }
-            var result = new Result { Array = defaultArray, Loops = loops, EqualsLoop = loops - equalsLoop, ResultArray = array };
+            var result = new Result { Array = defaultArray, Loops = loops, EqualsLoop = loops - equalsLoop - 1, ResultArray = array };
             return result;
         }
 
@@ -38,10 +38,14 @@ namespace testz.App.Classes
             return result;
         }
 
-        protected int FindEqualsIndex(List<Tuple<int, int[]>> list, int[] array)
+        protected int FindEqualsIndex(List<string> list, string stringigyArray)
         {
-            var founded = list.FirstOrDefault(x => x.Item2.SequenceEqual(array));
-            return founded?.Item1 ?? -1;
+            return list.FindIndex(x => x == stringigyArray);
+        }
+
+        protected string StringifyArray(int[] array)
+        {
+            return string.Join(",", array);
         }
     }
 }
